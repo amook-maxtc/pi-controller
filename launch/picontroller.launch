@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find livox_ros_driver)/launch/livox_lidar.launch"/>
+
+</launch>
