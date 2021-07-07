@@ -22,19 +22,19 @@ def start():
 
         imu_msg = Imu()
         imu_msg.time = gps_time.iTOW # Internet time of the week
-        imu_msg.roll = veh.roll
-        imu_msg.pitch = veh.pitch
-        imu_msg.heading = veh.heading
-        imu_msg.rollAcc = veh.accRoll
-        imu_msg.pitchAcc = veh.accPitch
-        imu_msg.headingAcc = veh.accHeading
+        imu_msg.roll = float(veh.roll)
+        imu_msg.pitch = float(veh.pitch)
+        imu_msg.heading = float(veh.heading)
+        imu_msg.rollAcc = float(veh.accRoll)
+        imu_msg.pitchAcc = float(veh.accPitch)
+        imu_msg.headingAcc = float(veh.accHeading)
         imu_pub.publish(imu_msg)
 
         loc_msg = Location()
         loc_msg.time = gps_time.iTOW # Internet time of the week
-        loc_msg.longitude = geo.lon
-        loc_msg.latitude = geo.lat
-        loc_msg.altitude = 0 #geo.altitude
+        loc_msg.longitude = float(geo.lon)
+        loc_msg.latitude = float(geo.lat)
+        loc_msg.altitude = 0.0 #geo.altitude
         loc_pub.publish(loc_msg)
 
         rate.sleep()

@@ -1,5 +1,5 @@
 uint32 time
 
-int32 longitude
-int32 latitude
-int32 altitude
+float32 longitude
+float32 latitude
+float32 altitude
