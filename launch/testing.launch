@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="picontroller" type="Zed_f9r_module.py" name="Zed_f9r_module" output="screen"></node>
+    <node pkg="picontroller" type="logger_node.py" name="logger_node" output="screen"></node>
+</launch>

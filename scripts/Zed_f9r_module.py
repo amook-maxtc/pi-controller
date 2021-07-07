@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from picontroller.msg import Location
 from picontroller.msg import Imu
@@ -34,7 +34,7 @@ def start():
         loc_msg.time = gps_time.iTOW # Internet time of the week
         loc_msg.longitude = geo.lon
         loc_msg.latitude = geo.lat
-        loc_msg.altitude = geo.altitude
+        loc_msg.altitude = 0 #geo.altitude
         loc_pub.publish(loc_msg)
 
         rate.sleep()

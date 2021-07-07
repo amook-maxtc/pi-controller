@@ -49,7 +49,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
     FILES
-    Position.msg
+    Location.msg
+    Imu.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -108,7 +109,7 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
-catkin_install_python(PROGRAMS scripts/publisher_node.py scripts/subscriber_node.py
+catkin_install_python(PROGRAMS scripts/publisher_node.py scripts/subscriber_node.py scripts/Zed_f9r_module.py scripts/logger_node.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
