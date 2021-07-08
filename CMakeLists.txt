@@ -109,7 +109,7 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
-catkin_install_python(PROGRAMS scripts/publisher_node.py scripts/subscriber_node.py scripts/Zed_f9r_module.py scripts/logger_node.py
+catkin_install_python(PROGRAMS scripts/Zed_f9r_module.py scripts/logger_node.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

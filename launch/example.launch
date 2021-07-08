@@ -1,4 +1,0 @@
-<launch>
-    <node pkg="picontroller" type="publisher_node.py" name="publisher_node" output="screen"></node>
-    <node pkg="picontroller" type="subscriber_node.py" name="subscriber_node" output="screen"></node>
-</launch>
