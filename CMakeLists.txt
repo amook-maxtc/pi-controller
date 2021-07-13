@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+  livox_ros_driver
 )
 
 ## System dependencies are found with CMake's conventions
@@ -109,7 +110,7 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
-catkin_install_python(PROGRAMS scripts/Zed_f9r_module.py scripts/logger_node.py
+catkin_install_python(PROGRAMS scripts/Zed_f9r_module.py scripts/logger_node.py scripts/lidar_logger.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
