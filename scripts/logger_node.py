@@ -5,9 +5,11 @@ from std_msgs.msg import String
 from picontroller.msg import Location
 from picontroller.msg import Imu
 import struct
+import datetime
 
-imuLog = open("/home/pi/sensor_data/imu_data.txt",'wb')
-locLog = open("/home/pi/sensor_data/loc_data.txt",'wb')
+time = datetime.datetime.now()
+imuLog = open("/home/pi/sensor_data/imu_data_{0}_{1}_{2}_{3}_{4}.imulog".format(time.year, time.month, time.day, time.hour, time.minute),'wb')
+locLog = open("/home/pi/sensor_data/loc_data_{0}_{1}_{2}_{3}_{4}.gpslog".format(time.year, time.month, time.day, time.hour, time.minute),'wb')
 
 def processImuData(data): #Initially just log data using ascii, eventually need to make own file format
     rospy.loginfo("Logging IMU data")

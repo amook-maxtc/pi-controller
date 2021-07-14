@@ -6,10 +6,13 @@ from livox_ros_driver.msg import CustomMsg
 from livox_ros_driver.msg import CustomPoint
 import laspy
 from laspy import PointFormat
+import datetime
 
+time = datetime.datetime.now()
+filename = "/home/pi/sensor_data/lidar_out_{0}_{1}_{2}_{3}_{4}.las".format(time.year, time.month, time.day, time.hour, time.minute)
 las_loc = laspy.lib.create_las(point_format=PointFormat(1)) #Create Las File
-las_loc.write("/home/pi/sensor_data/lidar_out.las")
-las = laspy.open("/home/pi/sensor_data/lidar_out.las","a") #Create LasAppender object to write points to
+las_loc.write(filename)
+las = laspy.open(filename,"a") #Create LasAppender object to write points to
 def processLidarData(data):
     base_time = data.timebase
     pointcld = np.zeros(data.point_num,PointFormat(1).dtype()) #Empty point object
