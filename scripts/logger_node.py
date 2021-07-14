@@ -4,17 +4,20 @@ import rospy
 from std_msgs.msg import String
 from picontroller.msg import Location
 from picontroller.msg import Imu
+import struct
 
-imuLog = open("/home/pi/sensor_data/imu_data.txt",'w')
-locLog = open("/home/pi/sensor_data/loc_data.txt",'w')
+imuLog = open("/home/pi/sensor_data/imu_data.txt",'wb')
+locLog = open("/home/pi/sensor_data/loc_data.txt",'wb')
 
 def processImuData(data): #Initially just log data using ascii, eventually need to make own file format
     rospy.loginfo("Logging IMU data")
-    imuLog.write("{0},{1},{2},{3},{4},{5},{6}\n".format(data.time, data.roll, data.pitch,data.heading,data.rollAcc,data.pitchAcc,data.headingAcc))
+    #imuLog.write("{0},{1},{2},{3},{4},{5},{6}\n".format(data.time, data.roll, data.pitch,data.heading,data.rollAcc,data.pitchAcc,data.headingAcc))
+    imuLog.write(struct.pack("Iffffff",data.time,data.roll,data.pitch,data.heading,data.rollAcc,data.pitchAcc,data.headingAcc))
 
 def processLocData(data):
     rospy.loginfo("Logging location data")
-    locLog.write("{0},{1},{2},{3}\n".format(data.time,data.longitude,data.latitude,data.altitude))
+    #locLog.write("{0},{1},{2},{3}\n".format(data.time,data.longitude,data.latitude,data.altitude))
+    locLog.write(struct.pack("Ifff",data.time, data.longitude, data.latitude, data.altitude))
 
 def shutdown():
     print("logger_node shutting down.")
