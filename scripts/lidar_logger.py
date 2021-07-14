@@ -5,11 +5,14 @@ import numpy as np
 from livox_ros_driver.msg import CustomMsg
 from livox_ros_driver.msg import CustomPoint
 import laspy
+from laspy import PointFormat
 
-las = laspy.open("/home/pi/sensor_data/lidar_out.las","a")
+las_loc = laspy.lib.create_las(point_format=PointFormat(1)) #Create Las File
+las_loc.write("/home/pi/sensor_data/lidar_out.las")
+las = laspy.open("/home/pi/sensor_data/lidar_out.las","a") #Create LasAppender object to write points to
 def processLidarData(data):
     base_time = data.timebase
-    pointcld = np.zeros(data.point_num,PointFormat(1).dtype())
+    pointcld = np.zeros(data.point_num,PointFormat(1).dtype()) #Empty point object
     for i in range(0,data.point_num):
         pointcld[i]["X"] = int(data.points[i].x * 1_000_000) #Livox units are meters, but LAS requires integers. So, the accuracy is 1um
         pointcld[i]["Y"] = int(data.points[i].y * 1_000_000)
@@ -24,9 +27,8 @@ def shutdown():
 
 
 def listener():
-    las_loc = laspy.lib.create_las(point_format=PointFormat(1))
     rospy.on_shutdown(shutdown)
-    las_loc.write("/home/pi/sensor_data/lidar_out.las")
+
     rospy.loginfo("Lidar logger opened")
     rospy.init_node("lidar_logger", anonymous=True)
     rospy.Subscriber('livox/lidar', CustomMsg, processLidarData)
