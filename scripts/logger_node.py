@@ -16,7 +16,14 @@ def processLocData(data):
     rospy.loginfo("Logging location data")
     locLog.write("{0},{1},{2},{3}\n".format(data.time,data.longitude,data.latitude,data.altitude))
 
+def shutdown():
+    print("logger_node shutting down.")
+    imuLog.close()
+    locLog.close()
+
+
 def listener():
+    rospy.on_shutdown(shutdown)
     rospy.loginfo("Data logger opened")
     rospy.init_node("logger_node",anonymous=True)
     rospy.Subscriber('imu_data', Imu, processImuData)
@@ -27,5 +34,4 @@ if __name__ == "__main__":
     try:
         listener()
     except rospy.ROSInterruptException:
-        imuLog.close()
-        locLog.close()
+        pass

@@ -11,7 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
-  livox_ros_driver
+  laspy
+  numpy
 )
 
 ## System dependencies are found with CMake's conventions
