@@ -34,7 +34,7 @@ def start():
         loc_msg.time = gps_time.iTOW # Internet time of the week
         loc_msg.longitude = float(geo.lon)
         loc_msg.latitude = float(geo.lat)
-        loc_msg.altitude = 0.0 #geo.altitude
+        loc_msg.altitude = float(geo.height)
         loc_pub.publish(loc_msg)
 
         rate.sleep()
