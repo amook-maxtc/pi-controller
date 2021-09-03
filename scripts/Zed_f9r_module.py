@@ -30,7 +30,7 @@ def start():
         if (msg_name == "ATT"):
             veh = gps.scale_NAV_ATT(payload)
             imu_msg = Imu()
-            imu_msg.time = veh.iTOW # Internet time of the week
+            imu_msg.time = veh.iTOW # time of the week
             imu_msg.roll = float(veh.roll)
             imu_msg.pitch = float(veh.pitch)
             imu_msg.heading = float(veh.heading)
